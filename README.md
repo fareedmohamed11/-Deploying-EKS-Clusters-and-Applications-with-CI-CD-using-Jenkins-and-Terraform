@@ -52,3 +52,8 @@ Before creating and working with the project, let’s set up some tools:
 The first thing we have to do is to create a new key pair for login into the EC2 instance and create an S3 bucket for storing terraform state files. This is the only manual step we are doing.
 
 So, in the AWS management console, go to `EC2` and select `key pairs` in the listed overview of your resources, and then select "Create key pair" at the top right corner. You need to download these key pairs so that you can use them later for logging into the EC2 instance.
+
+## Create Key Pairs for the EC2 Instance
+Next, let's create an S3 bucket to store the terraform remote states. You can also create a S3 bucket via Terraform, but in that case, you need to apply this configuration first as the S3 bucket must already exist before using it as a remote backend in Terraform. 
+
+Hence, go to `S3` and create a bucket named `terraform-eks-cid-<random_number>` (use some random number at the end to make it unique).
