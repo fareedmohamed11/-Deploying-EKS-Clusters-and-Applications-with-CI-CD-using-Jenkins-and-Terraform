@@ -48,3 +48,7 @@ Before creating and working with the project, let’s set up some tools:
    ```bash
    export AWS_ACCESS_KEY_ID=<Copy this from the credentials file downloaded>
    export AWS_SECRET_ACCESS_KEY=<Copy this from the credentials file downloaded>
+## Stage 1: Configure and Build Jenkins Server
+The first thing we have to do is to create a new key pair for login into the EC2 instance and create an S3 bucket for storing terraform state files. This is the only manual step we are doing.
+
+So, in the AWS management console, go to `EC2` and select `key pairs` in the listed overview of your resources, and then select "Create key pair" at the top right corner. You need to download these key pairs so that you can use them later for logging into the EC2 instance.
