@@ -33,3 +33,18 @@ To embark on our CI/CD adventure, we’ll need to trustfully provision the follo
 - **Terraform** — To create the infrastructure for the EC2 instance which will be used as a Jenkins server and EKS cluster in AWS.
 - **Shell Script** — To create a pipeline in the EC2 instance.
 - **Jenkins File** — To create a pipeline in the Jenkins Server.
+## Source Code
+You can download the complete source code inside this repository.
+
+## Prerequisites
+Before creating and working with the project, let’s set up some tools:
+
+1. Make sure you have an IDE to develop your project. I am using Visual Studio Code for the same. You can install it from the following link based on the operating system: [Visual Studio Code](https://code.visualstudio.com/download).
+
+2. Install the CLI tools — [AWS-CLI](https://aws.amazon.com/cli/) and [Terraform-CLI](https://www.terraform.io/downloads.html).
+
+3. Make sure you have an AWS Free Tier account. And then create a user in IAM Console and finally create an Access Key ID and Secret Access Key as shown below (copy this from the credentials file downloaded):
+
+   ```bash
+   export AWS_ACCESS_KEY_ID=<Copy this from the credentials file downloaded>
+   export AWS_SECRET_ACCESS_KEY=<Copy this from the credentials file downloaded>
