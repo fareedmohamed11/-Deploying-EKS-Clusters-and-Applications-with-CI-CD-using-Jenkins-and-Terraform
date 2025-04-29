@@ -16,3 +16,20 @@ We are going to build and deploy a lot of things. Here is the outline for our pr
 1. Setting up Jenkins Server with Terraform
 2. Installing necessary tools: Java, Jenkins, AWS CLI, Terraform CLI, Docker, Sonar, Helm, Trivy, Kubectl.
 3. Configuring Jenkins server.
+## II. Creating EKS Cluster with Terraform
+- Writing Terraform configuration files for EKS cluster creation in a private subnet.
+- Deploying EKS cluster using Terraform.
+
+## III. Deploying NGINX Application with Kubernetes
+- Writing Kubernetes manifest files (YAML) for the NGINX application.
+- Deploying NGINX application to EKS cluster.
+
+## IV. Automating Deployment with Jenkins CI/CD
+- Creating Jenkins pipeline for automating EKS cluster and NGINX application deployment.
+- Integrating Terraform and Kubernetes with the Jenkins pipeline.
+
+## What We’ll Need
+To embark on our CI/CD adventure, we’ll need to trustfully provision the following tools:
+- **Terraform** — To create the infrastructure for the EC2 instance which will be used as a Jenkins server and EKS cluster in AWS.
+- **Shell Script** — To create a pipeline in the EC2 instance.
+- **Jenkins File** — To create a pipeline in the Jenkins Server.
