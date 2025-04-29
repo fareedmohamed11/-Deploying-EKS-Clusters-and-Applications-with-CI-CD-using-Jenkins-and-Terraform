@@ -57,3 +57,57 @@ So, in the AWS management console, go to `EC2` and select `key pairs` in the lis
 Next, let's create an S3 bucket to store the terraform remote states. You can also create a S3 bucket via Terraform, but in that case, you need to apply this configuration first as the S3 bucket must already exist before using it as a remote backend in Terraform. 
 
 Hence, go to `S3` and create a bucket named `terraform-eks-cid-<random_number>` (use some random number at the end to make it unique).
+# Terraform Configuration for Jenkins Server on AWS
+
+# This repository contains the Terraform configuration to provision an EC2 instance that will serve as a Jenkins server.
+
+## #Prerequisites
+
+# Before running `terraform apply`, ensure the following:
+
+* #AWSAccount: You have an active AWS account configured with the necessary permissions.
+* #AWSCLI: The AWS Command Line Interface is installed and configured with your AWS credentials.
+* #Terraform: Terraform version 0.13 or later is installed on your local machine.
+* #KeyPair: An EC2 key pair named `jenkins_server_keypair` exists in the `us-east-1` region. You can create one using the AWS Management Console or AWS CLI.
+
+## #Setup
+
+1.  #CreateS3BucketForRemoteState:
+    ```bash
+    aws s3api create-bucket --bucket terraform-eks-cicd-7001 --region us-east-1
+    ```
+    *(#RememberToChooseAGloballyUniqueBucketNameIfThisOneIsAlreadyTaken)*
+
+2.  #CloneTheRepository:
+    ```bash
+    git clone <your_repository_url>
+    cd <repository_directory>/jenkins_server/tf-aws-ec2
+    ```
+
+## #TerraformConfigurationFiles
+
+* `#backend.tf`: Configures the Terraform S3 backend.
+* `#data.tf`: Retrieves AWS Availability Zones and the latest Amazon Linux 2 AMI (though a specific AMI is used in `main.tf`).
+* `#main.tf`: Defines the AWS resources, including the VPC, security group, and EC2 instance.
+* `#variables/dev.tfvars`: Contains the variable values for the `dev` environment (as indicated by your `terraform apply` command).
+* `#scripts/install_build_tools.sh`: A shell script executed on the EC2 instance at launch to install Jenkins, Git, Docker, AWS CLI, Terraform, Kubectl, Trivy, and Helm.
+
+## #RunningTerraform
+
+1.  #InitializeTerraform:
+    ```bash
+    terraform init
+    ```
+
+2.  #ApplyTheConfiguration:
+    ```bash
+    terraform apply -var-file=variables/dev.tfvars -auto-approve
+    ```
+
+## #ImportantNotes
+
+* #EnsureTheKeyPairNameInMainTf (`jenkins_server_keypair`) matches an existing key pair in your AWS account in the `us-east-1` region.
+* #TheS3BucketNameInBackendTf (`terraform-eks-cicd-7001`) must be unique.
+* #TheUserDataInTheEC2ModuleInMainTf references the `install_build_tools.sh` script, which will be executed upon instance creation.
+* #DoubleCheckYourCurrentWorkingDirectory when running Terraform commands. You should be in the `tf-aws-ec2` directory.
+* #AWSAccessKeyIDAndSecretAccessKey should be configured as environment variables or via AWS CLI configuration.
