@@ -113,3 +113,5 @@ Hence, go to `S3` and create a bucket named `terraform-eks-cid-<random_number>` 
 * #AWSAccessKeyIDAndSecretAccessKey should be configured as environment variables or via AWS CLI configuration.
 
 ![terraform](https://github.com/fareedmohamed11/-Deploying-EKS-Clusters-and-Applications-with-CI-CD-using-Jenkins-and-Terraform/blob/6b8347e20e6fc03bf901947425bf79e0cd40aa8c/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f76322f726573697a653a6669743a3730302f312a3170354f734e7776686453304a3438716338694451772e706e67.png)
+
+![Apply](https://github.com/fareedmohamed11/-Deploying-EKS-Clusters-and-Applications-with-CI-CD-using-Jenkins-and-Terraform/blob/f61e2eeab933a938a363b933981c864fdca7840c/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f76322f726573697a653a6669743a3730302f312a3459646d76776c434b476148634446505365716d41772e706e67.png)
