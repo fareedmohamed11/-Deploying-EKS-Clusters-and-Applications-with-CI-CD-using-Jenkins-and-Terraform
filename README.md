@@ -113,29 +113,29 @@ Hence, go to `S3` and create a bucket named `terraform-eks-cid-<random_number>` 
 * #AWSAccessKeyIDAndSecretAccessKey should be configured as environment variables or via AWS CLI configuration.
 
 ![Apply](https://github.com/fareedmohamed11/-Deploying-EKS-Clusters-and-Applications-with-CI-CD-using-Jenkins-and-Terraform/blob/f61e2eeab933a938a363b933981c864fdca7840c/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f76322f726573697a653a6669743a3730302f312a3459646d76776c434b476148634446505365716d41772e706e67.png)
-# Ah, I see you've successfully launched your Jenkins EC2 instance! That's excellent.
+### Ah, I see you've successfully launched your Jenkins EC2 instance! That's excellent.
 
-# The message "Give it some time before you go to the AWS EC2 console and check the instance status. Even though the instance is running, it may still be installing the tools" is a very important point. Cloud instances often take a few minutes after they show a "running" status to fully initialize and execute the user data script.
+### The message "Give it some time before you go to the AWS EC2 console and check the instance status. Even though the instance is running, it may still be installing the tools" is a very important point. Cloud instances often take a few minutes after they show a "running" status to fully initialize and execute the user data script.
 
-# The screenshot of the AWS EC2 console confirms that your instance named "Jenkins-Server" (instance ID `i-01792ce1d899168`) is indeed in the **running** state. You can see the public IPv4 address (`3.207.12.44`) assigned to it.
+### The screenshot of the AWS EC2 console confirms that your instance named "Jenkins-Server" (instance ID `i-01792ce1d899168`) is indeed in the **running** state. You can see the public IPv4 address (`3.207.12.44`) assigned to it.
 
-# The text below the image, "Jenkins Build Server Created," indicates that Terraform has successfully provisioned the EC2 instance.
+### The text below the image, "Jenkins Build Server Created," indicates that Terraform has successfully provisioned the EC2 instance.
 
-# Now, as you mentioned, the next crucial step is to verify if all the tools specified in your `install_build_tools.sh` script have been installed correctly.
+### Now, as you mentioned, the next crucial step is to verify if all the tools specified in your `install_build_tools.sh` script have been installed correctly.
 
-# To do this, you'll need to connect to the EC2 instance using SSH. As the instructions say, you'll need to select the EC2 instance in the AWS console and then get the SSH command. This command will typically include the public IP address of the instance, the username (usually `ec2-user` for Amazon Linux 2), and specify the private key file associated with the `jenkins_server_keypair` you mentioned earlier.
+### To do this, you'll need to connect to the EC2 instance using SSH. As the instructions say, you'll need to select the EC2 instance in the AWS console and then get the SSH command. This command will typically include the public IP address of the instance, the username (usually `ec2-user` for Amazon Linux 2), and specify the private key file associated with the `jenkins_server_keypair` you mentioned earlier.
 
-# Once you're connected via SSH, you can run commands to check the versions of the installed tools, such as:
+### Once you're connected via SSH, you can run commands to check the versions of the installed tools, such as:
 
-* `#java -version`
-* `#git --version`
-* `#docker --version`
-* `#aws --version`
-* `#terraform --version`
-* `#kubectl version --client`
-* `#trivy --version`
-* `#helm version`
+* ### `#java -version`
+* ### `#git --version`
+* ### `#docker --version`
+* ### `#aws --version`
+* ### `#terraform --version`
+* ### `#kubectl version --client`
+* ### `#trivy --version`
+* ### `#helm version`
 
-# You can also check the status of the Jenkins and Docker services using `sudo systemctl status jenkins` and `sudo systemctl status docker`.
+### You can also check the status of the Jenkins and Docker services using `sudo systemctl status jenkins` and `sudo systemctl status docker`.
 
-# Let me know if you encounter any issues when trying to connect to the instance or verifying the installed tools!
+### Let me know if you encounter any issues when trying to connect to the instance or verifying the installed tools!
