@@ -156,7 +156,7 @@ $ pwd
 $ cd Downloads
 
 ### List the key pair file to make sure it’s there
-$ ls -ltr jenkins_server_keypair.pem
+### $ ls -ltr jenkins_server_keypair.pem
 -r--------@ 1 fareed  staff  1674 Jan 16 15:00 jenkins_server_keypair.pem
 ---
 
