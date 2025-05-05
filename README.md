@@ -171,3 +171,12 @@ $ ssh -i "jenkins_server_keypair.pem" ec2-user@ec2-52-207-152-48.compute-1.amazo
 
 ### You should now be connected to your EC2 instance.
 
+# Sample Output After Successful Login
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2
+      ___|\___|___|
+
+  AL2 End of Life is 2025-06-30.
+
+  A newer version of Amazon Linux is available.
+
