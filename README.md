@@ -147,7 +147,7 @@ But before this, make sure you have the key pair file downloaded in your worksta
 
 ### Step-by-step
 
-```bash
+bash
 # Check your current directory
 $ pwd
 /Users/fareed
@@ -158,4 +158,16 @@ $ cd Downloads
 # List the key pair file to make sure it’s there
 $ ls -ltr jenkins_server_keypair.pem
 -r--------@ 1 fareed  staff  1674 Jan 16 15:00 jenkins_server_keypair.pem
+---
+
+# Use the key pair to SSH into the EC2 instance
+$ ssh -i "jenkins_server_keypair.pem" ec2-user@ec2-52-207-152-48.compute-1.amazonaws.com
+
+# First time you connect, you may see a warning like this:
+# The authenticity of host 'ec2-52-207-152-48.compute-1.amazonaws.com (52.207.152.48)' can't be established.
+# Are you sure you want to continue connecting (yes/no/[fingerprint])?
+
+# Type "yes" and press Enter
+
+# You should now be connected to your EC2 instance.
 
