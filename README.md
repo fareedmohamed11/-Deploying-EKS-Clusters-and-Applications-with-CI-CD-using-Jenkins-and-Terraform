@@ -273,3 +273,5 @@ instance_type   = "t2.small"**
 
 --
 ![jenkins](https://github.com/fareedmohamed11/-Deploying-EKS-Clusters-and-Applications-with-CI-CD-using-Jenkins-and-Terraform/blob/694b4354c8adf8575a7a644bb2cb79b58c7159ca/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f76322f726573697a653a6669743a3730302f312a6c5a4d4a34617144766a6f555565334650767a434f512e706e67.png)
+--
+![jenkins](https://github.com/fareedmohamed11/-Deploying-EKS-Clusters-and-Applications-with-CI-CD-using-Jenkins-and-Terraform/blob/eeed69e2af83630f581e2dd90e5f08ea8c5b735f/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f76322f726573697a653a6669743a3730302f312a68375f4247735f2d56344e6c3658452d37374b6b4f772e706e67.png)
