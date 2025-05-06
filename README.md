@@ -180,3 +180,95 @@ $ ssh -i "jenkins_server_keypair.pem" ec2-user@ec2-52-207-152-48.compute-1.amazo
 
   A newer version of Amazon Linux is available.
 
+# Stage 2: Create Terraform configuration files for creating the EKS Cluster
+**Task 1: Create Terraform configuration files
+Moving on, let's start writing terraform configurations for the EKS cluster in a private subnet.**
+
+We'll use the same bucket but a different key/folder for the terraform remote state file.
+--
+**terraform {
+  backend "s3" {
+    bucket = "terraform-eks-cicd-7001"
+    key    = "eks/terraform.tfstate"
+    region = "us-east-1"
+  }
+}**
+--
+# We'll be using publicly available modules for creating different services instead of resources
+# https://registry.terraform.io/browse/modules?provider=aws
+
+# Creating a VPC
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
+
+  name = var.vpc_name
+  cidr = var.vpc_cidr
+
+  azs            = data.aws_availability_zones.azs.names
+  public_subnets = var.public_subnets
+  private_subnets = var.private_subnets
+
+  enable_dns_hostnames = true
+  enable_nat_gateway = true
+  single_nat_gateway = true
+
+  tags = {
+    "kubernetes.io/cluster/my-eks-cluster" = "shared"
+    Terraform   = "true"
+    Environment = "dev"
+  }
+
+  public_subnet_tags = {
+    "kubernetes.io/cluster/my-eks-cluster" = "shared"
+    "kubernetes.io/role/elb" = 1
+  }
+
+  private_subnet_tags = {
+    "kubernetes.io/cluster/my-eks-cluster" = "shared"
+    "kubernetes.io/role/internal-elb" = 1
+  }
+}
+---
+# eks.tf
+# Ref - https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest
+
+module "eks" {
+  source  = "terraform-aws-modules/eks/aws"
+  version = "~> 20.0"
+
+  cluster_name    = "my-eks-cluster"
+  cluster_version = "1.29"
+
+  cluster_endpoint_public_access  = true
+
+  vpc_id     = module.vpc.vpc_id
+  subnet_ids = module.vpc.private_subnets
+
+  eks_managed_node_groups = {
+    nodes = {
+      min_size     = 1
+      max_size     = 3
+      desired_size = 2
+
+      instance_types = ["t2.small"]
+      capacity_type  = "SPOT"
+    }
+  }
+
+  tags = {
+    Environment = "dev"
+    Terraform   = "true"
+  }
+}
+--
+# 📝 Note:
+### We are using a private subnet for our EKS cluster as we don't want it to be publicly accessed.
+**aws_region      = "us-east-1"
+aws_account_id  = "12345678"
+vpc_name        = "eks-vpc"
+vpc_cidr        = "192.168.0.0/16"
+public_subnets  = ["192.168.1.0/24", "192.168.2.0/24", "192.168.3.0/24"]
+private_subnets = ["192.168.4.0/24", "192.168.5.0/24", "192.168.6.0/24"]
+instance_type   = "t2.small"**
+
+
